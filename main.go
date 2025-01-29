@@ -1,8 +1,9 @@
 package main
 
 import (
-	"gin-project/middleware"
-	"gin-project/routes"
+	"adhar-verification/database"
+	"adhar-verification/middleware"
+	"adhar-verification/routes"
 	"log"
 	"os"
 
@@ -17,10 +18,7 @@ func init() {
 }
 
 func main() {
-
-	// Set Gin mode to release
-	// gin.SetMode(gin.ReleaseMode)
-
+	database.InitDb()
 	r := gin.Default()
 
 	r.Use(middleware.ErrorHandler)
@@ -32,11 +30,11 @@ func main() {
 			"message": "Welcome to the Gin server!",
 		})
 	})
-
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8080"
 	}
+	log.Println("Server is running on port:", port)
 
 	if err := r.Run(":" + port); err != nil {
 		log.Fatalf("Error starting server: %v", err)

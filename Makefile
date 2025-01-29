@@ -1,5 +1,5 @@
 # Variables
-BINARY_NAME=ginTemplate
+BINARY_NAME=build
 SRC_FILE=main.go
 
 # Targets
